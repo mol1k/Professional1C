@@ -80,7 +80,7 @@ h1{font-size:22px;font-weight:700;margin:0;text-wrap:balance}
 
 /* Telegram theme override */
 html.tg body{background:var(--tg-theme-bg-color,var(--bg));color:var(--tg-theme-text-color,var(--ink))}
-html.tg .card,html.tg .chip,html.tg .btn{background:var(--tg-theme-secondary-bg-color,var(--surface))}
+html.tg .card,html.tg .chip:not([aria-pressed="true"]),html.tg .btn:not(.primary){background:var(--tg-theme-secondary-bg-color,var(--surface));color:var(--tg-theme-text-color,var(--ink))}
 html.tg .sub,html.tg .stats,html.tg .qnum,html.tg .hint{color:var(--tg-theme-hint-color,var(--muted))}
 html.tg .hint{display:none}
 </style>
@@ -115,7 +115,7 @@ html.tg .hint{display:none}
 <script>
 
 const TG = window.Telegram && window.Telegram.WebApp;
-if (TG && TG.initData !== undefined) {
+if (TG && TG.initData) {
   document.documentElement.classList.add('tg');
   try { TG.ready(); TG.expand(); } catch(e){}
   if (TG.colorScheme === 'dark') document.documentElement.setAttribute('data-theme','dark');
